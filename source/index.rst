@@ -6,6 +6,8 @@
 Welcome to Next Search Catalog Training's documentation!
 ========================================================
 
+Main index.
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:

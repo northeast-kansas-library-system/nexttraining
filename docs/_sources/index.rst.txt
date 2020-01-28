@@ -12,7 +12,8 @@ Main index.
    :maxdepth: 2
    :caption: Contents:
 
-
+   kanopy/index
+   
 
 Indices and tables
 ==================

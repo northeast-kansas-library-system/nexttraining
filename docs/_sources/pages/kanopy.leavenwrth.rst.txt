@@ -37,7 +37,9 @@ By default, the patron's home library should be set to LEAVENWRTH and the patron
 
 If you change the patron's home library from to anything besides LEAVENWRTH, the "Kanopy (LEAVENWRTH)" permission should automatically switch to "Not allowed"
 
-.. image:: ../../images/kanopy.leavenwrth.050.gif
+.. only:: html
+
+   .. image:: ../../images/kanopy.leavenwrth.050.gif
 
 However, if you chage a patron's "Kanopy (LEAVENWRTH)" permission manually, the patron's home library will not update automatically.
 

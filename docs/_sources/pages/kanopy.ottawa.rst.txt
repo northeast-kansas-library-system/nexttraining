@@ -37,7 +37,9 @@ By default, the patron's home library should be set to OTTAWA and the patron's "
 
 If you change the patron's home library from to anything besides OTTAWA, the "Kanopy (OTTAWA)" permission should automatically switch to "Not allowed"
 
-.. image:: ../../images/kanopy.ottawa.050.gif
+.. only:: html
+
+   .. image:: ../../images/kanopy.ottawa.050.gif
 
 However, if you chage a patron's "Kanopy (OTTAWA)" permission manually, the patron's home library will not update automatically.
 

@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Kanopy training for Leavenworth Public Library
+Kanopy training for Leavenworth Public Libraryf
 ==============================================
 
 .. include::  ..\..\pages\kanopy.leavenwrth.rst

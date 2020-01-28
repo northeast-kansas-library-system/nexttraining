@@ -44,3 +44,21 @@ However, if you chage a patron's "Kanopy (OTTAWA)" permission manually, the patr
 
 Running a report to manually update Kanopy Permission
 -----------------------------------------------------
+
+OTTAWA patrons without Kanopy access
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If a new patron with a OTTAWA home library is added at a library not logged in as OTTAWA, the new patron's "Kanopy (OTTAWA)" settings will be left blank and the patron will not be able to access Kanopy.  In order to identify these patrons, staff at OTTAWA will need to regularly run report 3298.
+
+.. image:: ../../images/kanopy.ottawa.060.png
+
+.. image:: ../../images/kanopy.ottawa.070.png
+
+Non-OTTAWA patrons with Kanopy access
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If an existing patron who has Kanopy access changes their home library, that patron's Kanopy access needs to be removed from their account manually.  If the change to their account happens and staff is not logged in at OTTAWA, staff will not be able to remove the "Kanopy (OTTAWA)" status.  In order to identify these patrons, staff at OTTAWA will need to regularly run report 3299.
+
+.. image:: ../../images/kanopy.ottawa.080.png
+
+.. image:: ../../images/kanopy.ottawa.070.png

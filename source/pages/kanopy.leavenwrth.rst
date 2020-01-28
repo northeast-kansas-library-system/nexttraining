@@ -44,3 +44,21 @@ However, if you chage a patron's "Kanopy (LEAVENWRTH)" permission manually, the 
 
 Running a report to manually update Kanopy Permission
 -----------------------------------------------------
+
+LEAVENWRTH patrons without Kanopy access
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If a new patron with a LEAVENWRTH home library is added at a library not logged in as LEAVENWRTH, the new patron's "Kanopy (LEAVENWRTH)" settings will be left blank and the patron will not be able to access Kanopy.  In order to identify these patrons, staff at LEAVENWRTH will need to regularly run report 3298.
+
+.. image:: ../../images/kanopy.leavenwrth.060.png
+
+.. image:: ../../images/kanopy.leavenwrth.070.png
+
+Non-LEAVENWRTH patrons with Kanopy access
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If an existing patron who has Kanopy access changes their home library, that patron's Kanopy access needs to be removed from their account manually.  If the change to their account happens and staff is not logged in at LEAVENWRTH, staff will not be able to remove the "Kanopy (LEAVENWRTH)" status.  In order to identify these patrons, staff at LEAVENWRTH will need to regularly run report 3299.
+
+.. image:: ../../images/kanopy.leavenwrth.080.png
+
+.. image:: ../../images/kanopy.leavenwrth.070.png

@@ -6,6 +6,8 @@
 Welcome to Next Search Catalog Training's documentation!
 ========================================================
 
+.. include::  ..\..\pages\kanopy.ottawa.rst
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:

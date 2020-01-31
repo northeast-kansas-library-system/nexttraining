@@ -17,33 +17,35 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/override.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search"  style="background: white" >
           
 
           
@@ -153,15 +155,15 @@
 <p>Whenever a patron logs into an outside service like Kanopy or Hoopla or Lynda.com, that web service talks to our catalog through a connection called SIP2 to verify that the patron has an account and that they are allowed to access their service.  The information that is transmitted across this connection includes some parts of the patron’s contact information including the patron’s home library.  The problem we have with Kanopy, however, is that, because of the way the receiving end of the Kanopy SIP2 connection is configured, Kanopy cannot determine what the patron’s home library is.  Because of this, we need to send the patron’s home library through an alternate route.  To make this happen, we’ve created a new field in the “Permissions” section on a patron’s account called “Kanopy (LEAVENWRTH).”</p>
 <p>The new “Kanopy (LEAVENWRTH)” permission will have 3 options</p>
 <ul class="simple">
-<li>[blank]</li>
-<li>Not allowed</li>
-<li>Allowed (Leavenworth Public Library)</li>
+<li><p>[blank]</p></li>
+<li><p>Not allowed</p></li>
+<li><p>Allowed (Leavenworth Public Library)</p></li>
 </ul>
 <p>These three options will only be available to staff logged in at LEAVENWRTH in order to prevent staff at other libraries from granting permission to access the Leavenworth Public Library’s Kanopy service to their patrons.</p>
 <p>This will affect staff and patrons in two ways:</p>
 <ol class="arabic simple">
-<li>When staff at LEAVENWRTH create a new account for a patron, the patron’s “Kanopy (LEAVENWRTH)” permission needs to be set to “Allowed (Leavenworth Public Library)” if their home library is LEAVENWRTH or “Not allowed” if their home library is not LEAVENWRTH.  This should happen automatically when a new patron is created.</li>
-<li>If staff at another library change a patron’s home library, staff at LEAVENWRTH will need to update the patron’s “Kanopy (LEAVENWRTH)” settings to “Allowed (Leavenworth Public Library)” if the patron’s new home library is LEAVENWRTH or”Not allowed” if the patron’s new home library is no longer LEAVENWRTH.  This process cannot happen automatically because only LEAVENWRTH staff have access to the “Kanopy (LEAVENWRTH)” permission settings.  Reports will be set up to help LEAVENWRTH staff manage this process.</li>
+<li><p>When staff at LEAVENWRTH create a new account for a patron, the patron’s “Kanopy (LEAVENWRTH)” permission needs to be set to “Allowed (Leavenworth Public Library)” if their home library is LEAVENWRTH or “Not allowed” if their home library is not LEAVENWRTH.  This should happen automatically when a new patron is created.</p></li>
+<li><p>If staff at another library change a patron’s home library, staff at LEAVENWRTH will need to update the patron’s “Kanopy (LEAVENWRTH)” settings to “Allowed (Leavenworth Public Library)” if the patron’s new home library is LEAVENWRTH or”Not allowed” if the patron’s new home library is no longer LEAVENWRTH.  This process cannot happen automatically because only LEAVENWRTH staff have access to the “Kanopy (LEAVENWRTH)” permission settings.  Reports will be set up to help LEAVENWRTH staff manage this process.</p></li>
 </ol>
 </div>
 <div class="section" id="creating-a-new-account">
@@ -178,8 +180,8 @@
 <img alt="pages\../../images/kanopy.leavenwrth.050.gif" src="pages\../../images/kanopy.leavenwrth.050.gif" />
 <p>However, if you chage a patron’s “Kanopy (LEAVENWRTH)” permission manually, the patron’s home library will not update automatically.</p>
 </div>
-<div class="section" id="running-a-report-to-manually-update-kanopy-permission">
-<h1>Running a report to manually update Kanopy Permission<a class="headerlink" href="#running-a-report-to-manually-update-kanopy-permission" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="running-reports-to-manually-update-kanopy-permission">
+<h1>Running reports to manually update Kanopy Permission<a class="headerlink" href="#running-reports-to-manually-update-kanopy-permission" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="leavenwrth-patrons-without-kanopy-access">
 <h2>LEAVENWRTH patrons without Kanopy access<a class="headerlink" href="#leavenwrth-patrons-without-kanopy-access" title="Permalink to this headline">¶</a></h2>
 <p>If a new patron with a LEAVENWRTH home library is added at a library not logged in as LEAVENWRTH, the new patron’s “Kanopy (LEAVENWRTH)” settings will be left blank and the patron will not be able to access Kanopy.  In order to identify these patrons, staff at LEAVENWRTH will need to regularly run report 3298.</p>
@@ -222,35 +224,28 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'../',
-              VERSION:'',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
 
 </body>
 </html>

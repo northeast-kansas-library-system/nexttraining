@@ -3,10 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. # for Parts / * for Chapters / = for sections (“Heading 1”) / - for subsections (“Heading 2”) / ^ for subsubsections (“Heading 3”) / " for paragraphs (“Heading 4”)
+   .. # for Parts [/source/]
+   .. * for Chapters [/source/subfolder/ or source/subfolder/libraryname]
+   .. = for sections (“Heading 1”) [/souce/pages/]
+   .. - for subsections (“Heading 2”)
+   .. ^ for subsubsections (“Heading 3”)
+   .. " for paragraphs (“Heading 4”)
 
 Welcome to Next Search Catalog Training's documentation!
-========================================================
+########################################################
 
 Main index.
 
@@ -18,7 +23,7 @@ Main index.
 
 
 Indices and tables
-==================
+##################
 
 * :ref:`genindex`
 * :ref:`modindex`

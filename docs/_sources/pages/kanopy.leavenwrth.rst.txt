@@ -1,7 +1,12 @@
-.. # for Parts / * for Chapters / = for sections (“Heading 1”) / - for subsections (“Heading 2”) / ^ for subsubsections (“Heading 3”) / " for paragraphs (“Heading 4”)
+.. # for Parts [/source/]
+.. * for Chapters [/source/subfolder/ or source/subfolder/libraryname]
+.. = for sections (“Heading 1”) [/souce/pages/]
+.. - for subsections (“Heading 2”)
+.. ^ for subsubsections (“Heading 3”)
+.. " for paragraphs (“Heading 4”)
 
 Extra patron attribute needed for Kanopy
-----------------------------------------
+========================================
 
 Whenever a patron logs into an outside service like Kanopy or Hoopla or Lynda.com, that web service talks to our catalog through a connection called SIP2 to verify that the patron has an account and that they are allowed to access their service.  The information that is transmitted across this connection includes some parts of the patron's contact information including the patron's home library.  The problem we have with Kanopy, however, is that, because of the way the receiving end of the Kanopy SIP2 connection is configured, Kanopy cannot determine what the patron's home library is.  Because of this, we need to send the patron's home library through an alternate route.  To make this happen, we've created a new field in the "Permissions" section on a patron's account called "Kanopy (LEAVENWRTH)."
 
@@ -19,7 +24,7 @@ This will affect staff and patrons in two ways:
 #. If staff at another library change a patron's home library, staff at LEAVENWRTH will need to update the patron's "Kanopy (LEAVENWRTH)" settings to "Allowed (Leavenworth Public Library)" if the patron's new home library is LEAVENWRTH or"Not allowed" if the patron's new home library is no longer LEAVENWRTH.  This process cannot happen automatically because only LEAVENWRTH staff have access to the "Kanopy (LEAVENWRTH)" permission settings.  Reports will be set up to help LEAVENWRTH staff manage this process.
 
 Creating a new account
-----------------------
+======================
 
 When logged in at Leavenworth Public Library, click on "Patrons"
 
@@ -46,11 +51,11 @@ If you change the patron's home library from to anything besides LEAVENWRTH, the
 However, if you chage a patron's "Kanopy (LEAVENWRTH)" permission manually, the patron's home library will not update automatically.
 
 
-Running a report to manually update Kanopy Permission
------------------------------------------------------
+Running reports to manually update Kanopy Permission
+====================================================
 
 LEAVENWRTH patrons without Kanopy access
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------------
 
 If a new patron with a LEAVENWRTH home library is added at a library not logged in as LEAVENWRTH, the new patron's "Kanopy (LEAVENWRTH)" settings will be left blank and the patron will not be able to access Kanopy.  In order to identify these patrons, staff at LEAVENWRTH will need to regularly run report 3298.
 
@@ -59,7 +64,7 @@ If a new patron with a LEAVENWRTH home library is added at a library not logged 
 .. image:: ../../images/kanopy.leavenwrth.070.png
 
 Non-LEAVENWRTH patrons with Kanopy access
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------------
 
 If an existing patron who has Kanopy access changes their home library, that patron's Kanopy access needs to be removed from their account manually.  If the change to their account happens and staff is not logged in at LEAVENWRTH, staff will not be able to remove the "Kanopy (LEAVENWRTH)" status.  In order to identify these patrons, staff at LEAVENWRTH will need to regularly run report 3299.
 

@@ -1,7 +1,12 @@
-.. # for Parts / * for Chapters / = for sections (“Heading 1”) / - for subsections (“Heading 2”) / ^ for subsubsections (“Heading 3”) / " for paragraphs (“Heading 4”)
+.. # for Parts [/source/]
+.. * for Chapters [/source/subfolder/ or source/subfolder/libraryname]
+.. = for sections (“Heading 1”) [/souce/pages/]
+.. - for subsections (“Heading 2”)
+.. ^ for subsubsections (“Heading 3”)
+.. " for paragraphs (“Heading 4”)
 
 Next Users Group - January 30 Agenda
-------------------------------------
+====================================
 
 | Thursday, January 30, 2020
 | NEKLS office in Lawrence |NEKLS_directions|

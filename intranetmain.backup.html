@@ -1,0 +1,570 @@
+<style type="text/css">
+  ul#mptabs {
+    list-style-type: none;
+    margin: 30px 0 0 0;
+    padding: 0 0 0.3em 0;
+  }
+
+  ul#mptabs li {
+    display: inline;
+  }
+
+  ul#mptabs li a {
+    color: #42454a;
+    background-color: #dedbde;
+    border: 1px solid #c9c3ba;
+    border-bottom: none;
+    padding: 0.3em;
+    text-decoration: none;
+  }
+
+  ul#mptabs li a:hover {
+    background-color: #f1f0ee;
+  }
+
+  ul#mptabs li a.selected {
+    color: #000;
+    background-color: #f1f0ee;
+    font-weight: bold;
+    padding: 0.7em 0.3em 0.38em 0.3em;
+  }
+
+  div.mptabContent {
+    border: 1px solid #c9c3ba;
+    padding: 0.5em;
+    background-color: #f1f0ee;
+  }
+
+  div.mptabContent.hide {
+    display: none;
+  }
+
+  #stat1 {
+    background-color: #d8d8d6 !important;
+  }
+
+  #stat2 {
+    background-color: #c0c0be !important;
+  }
+
+  #stat3 {
+    background-color: #a8a8a6 !important;
+  }
+
+  .futrow {
+    display: none;
+  }
+
+  .currow td {
+    background-color: #ffff80 !important;
+  }
+
+  h2 {
+    text-decoration-line: underline;
+  }
+</style>
+<script type="text/javascript">
+  //<![CDATA[
+  var mptabLinks = new Array();
+  var contentDivs = new Array();
+
+  function init() {
+    // Grab the mptab links and content divs from the page
+    var mptabListItems = document.getElementById('mptabs').childNodes;
+    for (var i = 0; i < mptabListItems.length; i++) {
+      if (mptabListItems[i].nodeName == "LI") {
+        var mptabLink = getFirstChildWithTagName(mptabListItems[i], 'A');
+        var id = getHash(mptabLink.getAttribute('href'));
+        mptabLinks[id] = mptabLink;
+        contentDivs[id] = document.getElementById(id);
+      }
+    }
+    // Assign onclick events to the mptab links, and
+    // highlight the first mptab
+    var i = 0;
+    for (var id in mptabLinks) {
+      mptabLinks[id].onclick = showmptab;
+      mptabLinks[id].onfocus = function() {
+        this.blur()
+      };
+      if (i == 0) mptabLinks[id].className = 'selected';
+      i++;
+    }
+    // Hide all content divs except the first
+    var i = 0;
+    for (var id in contentDivs) {
+      if (i != 0) contentDivs[id].className = 'mptabContent hide';
+      i++;
+    }
+  }
+
+  function showmptab() {
+    var selectedId = getHash(this.getAttribute('href'));
+    // Highlight the selected mptab, and dim all others.
+    // Also show the selected content div, and hide all others.
+    for (var id in contentDivs) {
+      if (id == selectedId) {
+        mptabLinks[id].className = 'selected';
+        contentDivs[id].className = 'mptabContent';
+      } else {
+        mptabLinks[id].className = '';
+        contentDivs[id].className = 'mptabContent hide';
+      }
+    }
+    // Stop the browser following the link
+    return false;
+  }
+
+  function getFirstChildWithTagName(element, tagName) {
+    for (var i = 0; i < element.childNodes.length; i++) {
+      if (element.childNodes[i].nodeName == tagName) return element.childNodes[i];
+    }
+  }
+
+  function getHash(url) {
+    var hashPos = url.lastIndexOf('#');
+    return url.substring(hashPos + 1);
+  }
+
+  //]]>
+</script>
+
+<body onload="init()">
+  <h1>Next: staff client</h1>
+  <ul id="mptabs">
+    <li><a href="#tab01">High demand requests</a></li>
+    <li><a href="#tab02">Statistics - 2019</a></li>
+    <li><a href="#tab03">Locked accounts</a></li>
+    <li><a href="#tab04">Statistics - 2018</a></li>
+    <li><a href="#tab05">Hoopla help</a></li>
+    <li><a href="#tab06" style="display: none;">Tab 6</a></li>
+  </ul>
+
+  <!--  TAB01 -->
+  <div class="mptabContent" id="tab01">
+    <h2><span class="mrq">High demand requests at your library</span></h2>
+    <p>&nbsp;</p>
+    <div>
+      <h3>Request information for your library</h3>
+      <p>This table indicates titles that have multiple requests for pickup at your library where one of the following situations is also true:</p>
+      <ul>
+        <li>Your library owns 0 copies of the title</li>
+        <li>There are more than 3 requests per copy system-wide for pickup at your library</li>
+      </ul>
+      <p>These titles appear to have a high demand and you may want to consider purchasing additional copies.</p>
+      <p>This is a cached report. It updates a maximum of one time per hour.</p>
+      <p>If there are no items that meet the listed criteria for this report at your library, the report will not show any results.</p>
+      <p>&nbsp;</p>
+      <p><a href="https://youtu.be/n6__np16LnE" target="_blank">Click here to see a video on this new feature.</a></p>
+      <p>&nbsp;</p>
+      <p><a href="/cgi-bin/koha/reports/guided_reports.pl?phase=Run+this+report&reports=3263&limit=500" target="_blank">Click here to see all titles with a greater than 3:1 requests to items ratio system-wide.</a></p>
+      <p>&nbsp;</p>
+      <div id="requesttable">
+        <table id="localrequests_table" class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>GO_TO_THE<br />BIBLIOGRPHIC<br />RECORD</th>
+              <th>Title</th>
+              <th>REQUESTS_AT<br />YOUR_LIBRARY</th>
+              <th>COPIES_OWNED<br />BY_YOUR_LIBRARY</th>
+              <th>SYSTEM_WIDE<br />ITEM_COUNT</th>
+              <th>SYSTEM_WIDE<br />REQUEST_COUNT</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!--  TABR02 -->
+  <div class="mptabContent" id="tab02" style="font-size: 110%;">
+    <h2>Statistics - 2019</h2>
+    <br />
+    <div>
+      <div id="stat1">
+        <h5>Spreadsheet reports</h5>
+        <div id="monthly-stats">
+
+          <h6>Monthly statistics - Excel spreadsheet.</h6>
+          <p><ins><a href="https://drive.google.com/uc?id=1G1jigRDGgwHW5K5qn01JiUPk2IRx9WLt&export=download">2019 calendar year statistics (Excel file - switch tabs at the bottom of the screen to view different months)</a></ins></p>
+          <p style='display: ;'><span style="color: black; background-color: yellow;">There was an error in the formulas on the page for December in column C when this was originally published on January 1, 2020.  The formulas were corrected on January 3, 2020.</span></p>
+          <p>Updated 2020.01.03<br />maintained by <a href="mailto:nexthelp@nekls.org?subject=Monthly%20statistics%20question">George Williams</a></p>
+
+          <p>-----</p>
+
+          <p><ins><a href="https://drive.google.com/uc?id=1EAjr4EGuhV6580Fhvhmz4vJeqQCp4SiG&export=download">2019 fiscal year statistics - July 1, 2018 - June 30, 2019 (Excel file - switch tabs at the bottom of the screen to view different months)</a></ins></p>
+          <p>Updated 2019.09.05<br />maintained by <a href="mailto:nexthelp@nekls.org?subject=Monthly%20statistics%20question">George Williams</a></p>
+          <p style='display: ;'><span style="color: black; background-color: yellow;">This is the same data as the regular monthly statistics report - just set for a July 1 - June 30 fiscal year.</span></p>
+          <p>-----</p>
+        </div>
+
+        <div id="ccode-stats">
+          <h6>Circulation statistics by collection code - Excel spreadsheet.</h6>
+          <p><ins><a href="https://drive.google.com/uc?id=1D7fJ065FEUro-nJIAtjtS_uOXVD4k8Zm&export=download">2019 circulaton statistics by collection code (Excel file - switch tabs at the bottom of the screen to view different months)</a></ins></p>
+          <p>Updated 2019.12.11<br />maintained by <a href="mailto:nexthelp@nekls.org?subject=Monthly%20statistics%20question">George Williams</a></p>
+          <p style='display: none;'><span style="color: black; background-color: yellow;">Note goes here.</span></p>
+          <p>-----</p>
+        </div>
+
+        <div id="request-stats">
+          <h6>Request statistics - Excel spreadsheet.</h6>
+          <p><ins><a href="https://drive.google.com/uc?id=1CwpgGiOTVrghLAK27ox1PGBeha2I_2xr&export=download">2019 request statistics (Excel file - switch tabs at the bottom of the screen to view different months)</a></ins></p>
+            <p>Updated 2020.01.01<br />maintained by <a href="mailto:nexthelp@nekls.org?subject=Request%20statistics%20question">George Williams</a></p>
+            <p><span style="color: black; background-color: yellow; display: none;">Notes go here.</span></p>
+            <p>-----</p>
+        </div>
+
+        <div id="net-stats">
+          <h6>Net borrower/net lender - Excel spreadsheet.</h6>
+          <p><ins><a href="https://drive.google.com/uc?id=1DQvkfP-7cEw5-b5OJnLcRLdUok5SYgpb&export=download">2019 Net borrower/lender summary (Excel file - switch tabs at the bottom of the screen to view different months)</a></ins></p>
+          <p>Updated 2019.12.11<br />maintained by <a href="mailto:nexthelp@nekls.org?subject=Monthly%20statistics%20question">George Williams</a></p>
+          <p>-----</p>
+        </div>
+
+        <div id="eresource-stats">
+          <h6>E-resources statistics - Google spreadsheet.</h6>
+          <p><ins><a href="https://docs.google.com/spreadsheets/d/1C_obLu5MbuiTUma-B29_lt2v7Odd4HBGzqTrVVMdR1k/edit?usp=sharing" target="_blank">2019 E-resources statistics (Google sheet - switch tabs at the bottom of the screen to view different months)</a></ins></p>
+            <p>Updated 2019.12.05<br />maintained by <a href="mailto:nexthelp@nekls.org?subject=E-resource%20statistics%20question">Robin Hastings</a></p>
+            <p>-----</p>
+        </div>
+
+        <div id="annual-stats">
+          <h6 style="display: ;"><span style="color: black; background-color: yellow;">Annual statistical survey data - Excel spreadsheet.</span></h6>
+          <p><ins><a href="https://drive.google.com/uc?id=1FdBmQ1KoZvV5vIxh89843s45hepnHbQI&export=download" target="_blank">2019 state survey data</a></ins></p>
+          <p style="display: ;">Updated - 2019.01.06</p>
+          <p>-----</p>
+        </div>
+      </div>
+
+      <div id="stat2">
+        <h5>Detailed statistical reports</h5>
+        <p>All reports show data for the previous calendar month</p>
+        <ul>
+          <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=3128&phase=Run%20this%20report" target="_blank">Checkout and renewal count by item type and shelving location - previous calendar month</a></li>
+          <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=3159&phase=Run%20this%20report" target="_blank">Checkout and renewal count by collection code and shelving location - previous calendar month</a></li>
+          <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=2902&phase=Run%20this%20report" target="_blank">Materials added count by item type and location - previous calendar month</a></li>
+          <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=2901&phase=Run%20this%20report" target="_blank">Materials added count by collection code and location - previous calendar month</a></li>
+          <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=2903&phase=Run%20this%20report" target="_blank">Patrons added count by category - previous calendar month</a></li>
+        </ul>
+        <br />
+        <h5>Detail reports for new patrons and new materials</h5>
+        <p>All reports show data for the previous calendar month</p>
+        <ul>
+          <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=3160&phase=Run%20this%20report" target="_blank">Materials added in the previous calendar month</a></li>
+          <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=3161&phase=Run%20this%20report" target="_blank">Patrons added in the previous calendar month (review for errors/typos/etc.)</a></li>
+        </ul>
+        <p>-----</p>
+      </div>
+
+      <div id="stat3">
+        <h5>NExpress 2019 overall statistics</h5>
+        <table class="tg">
+          <tr>
+            <th>2019</th>
+            <th id="eomitotalhd">Total items</th>
+            <th id="eombtotalhd">Total titles</th>
+            <th id="eomptotalhd">Total patrons</th>
+            <th id="eomctotalhd">Total Circulation<br />this month</th>
+            <th id="eoyctotalhd">Total Circ for 2019 through<br />the end of this month</th>
+          </tr>
+          <tr class="currow">
+            <td>December</td>
+            <td>1030825</td>
+            <td>407228</td>
+            <td>119204</td>
+            <td>100019</td>
+            <td>1458904</td>
+          </tr>
+          <tr>
+            <td>November</td>
+            <td>1064334</td>
+            <td>440273</td>
+            <td>120244</td>
+            <td>105899</td>
+            <td>1358885</td>
+          <tr>
+            <td>October</td>
+            <td>1061008</td>
+            <td>436693</td>
+            <td>119741</td>
+            <td>118597</td>
+            <td>1252986</td>
+          </tr>
+          <tr>
+            <td>September</td>
+            <td>1061547</td>
+            <td>436979</td>
+            <td>124888</td>
+            <td>115056</td>
+            <td>1134389</td>
+          </tr>
+          <tr>
+            <td>August</td>
+            <td>1060176</td>
+            <td>436171</td>
+            <td>124086</td>
+            <td>126551</td>
+            <td>1019333</td>
+          </tr>
+          <tr>
+            <td>July</td>
+            <td>1064427</td>
+            <td>437467</td>
+            <td>125055</td>
+            <td>147038</td>
+            <td>892782</td>
+          <tr>
+            <td>June</td>
+            <td>1075089</td>
+            <td>445874</td>
+            <td>123948</td>
+            <td>149861</td>
+            <td>745744</td>
+          </tr>
+          <tr>
+            <td>May</td>
+            <td>1073630</td>
+            <td>445106</td>
+            <td>122686</td>
+            <td>129164</td>
+            <td>595883</td>
+          </tr>
+          <tr>
+            <td>April</td>
+            <td>1074802</td>
+            <td>445170</td>
+            <td>121816</td>
+            <td>116208</td>
+            <td>466719</td>
+          </tr>
+          <tr>
+            <td>March</td>
+            <td>1073449</td>
+            <td>442870</td>
+            <td>121626</td>
+            <td>121594</td>
+            <td>350511</td>
+          </tr>
+          <tr>
+            <td>February</td>
+            <td>1072162</td>
+            <td>442816</td>
+            <td>120929</td>
+            <td>111122</td>
+            <td>228917</td>
+          </tr>
+          <tr>
+            <td>January</td>
+            <td>1071290</td>
+            <td>442066</td>
+            <td>120567</td>
+            <td>117795</td>
+            <td>117795</td>
+          </tr>
+        </table>
+        <p><span>Updated 2020.01.01</p>
+        <p>-----</p>
+      </div>
+    </div>
+  </div>
+
+  <!--  TABR03 -->
+  <div class="mptabContent" id="tab03" style="font-size: 110%;">
+    <h2>Locked accounts</h2>
+    <div>
+      <p>For the full instruction sheet, <a href="https://will1410.github.io/next.training/staffmodules/circulation/circulationproblems.html#patron-account-locked-due-to-too-many-login-attempts" target="_blank">click here</a></p>
+      <h3>Locked account report:</h3>
+      <p>Run report 3019 to see all patrons who have been locked out of their accounts. (<a href="/cgi-bin/koha/reports/guided_reports.pl?reports=3019&phase=Run%20this%20report" target="_blank">Click here to run report 3019 in a new window</a>)</p>
+      <ul>
+        <li>If you wish to see all patrons who have been locked out, choose a library from the drop-down menu and leave the asterisk in the card number field.</li>
+        <li>If you wish to check a specific patron, leave the drop-down set to "All libraries" and enter the patron's barcode number in the card number field.</li>
+      </ul>
+      <p>If a patron does not appear on the list, their account has not been locked out.</p>
+      <h3>Re-setting an account</h3>
+      <p>To unlock an account from the staff client:</p>
+      <ol>
+        <li>Navigate to the patron's account</li>
+        <li>Click on the "Change password" button</li>
+        <li>Enter the new password in the password fields</li>
+      </ol>
+      <p>Please note that "SYSTEM login only" accounts, "Library Associate" accounts, and "NEKLS Test Account" accounts cannot be reset by other staff members (only system administrators can edit passwords for these types of accounts).</p>
+    </div>
+  </div>
+
+  <!--  TABR04 -->
+  <div class="mptabContent" id="tab04" style="font-size: 110%;">
+    <h2>Statistics - 2018</h2>
+    <br />
+    <div>
+      <div id="stat1">
+        <h5>Spreadsheet reports</h5>
+        <p>Monthly statistics - Excel spreadsheet.</p>
+        <p><ins><a href="https://drive.google.com/uc?id=10OQb9V8xdlXLqxJ85VdcnJZxxFfIQyiT&export=download">2018 statistics (Excel file - switch tabs at the bottom of the screen to view different months)</a></ins></p>
+        <p>Updated 2019.01.01</p>
+        <p>-----</p>
+        <p>Request statistics - Excel spreadsheet.</p>
+        <p>Updated 2019.01.01</p>
+        <p><span style="color: white; background-color: red;">Special note:</span> After the upgrade in July there were significant errors in the <ins>Request statistics</ins> report that were not identified until November. All reports from November
+          4 onwards should reflect accurate data and correct the errors for July, August, and September.</p>
+        <p><ins><a href="https://drive.google.com/uc?id=11CjyhXMEa2L4OHEVadXFmJEmzZu-03NR&export=download">2018 request statistics (Excel file - switch tabs at the bottom of the screen to view different months)</a></ins></p>
+        <p>-----</p>
+        <p><span style="color: black; background-color: yellow;">Annual statistical survey data - Excel spreadsheet.</span></p>
+        <p><ins><a href="https://drive.google.com/uc?id=1CqvL_UcB34JcHn0VoDOkVQm-uN0cR2Lc&export=download">2018 state survey data (Excel file - switch tabs at the bottom of the screen to view 2017 data)</a></ins></p>
+        <p><span style="color: white; background-color: red;">Special note:</span> The data in columns K and L were inverted in the original version of this file. The file was updated on January 8 to reflect the correct data.</p>
+        <p>Updated 2019.01.08</p>
+        <p>-----</p>
+      </div>
+      <div id="stat2">
+        <h5>Detailed reports</h5>
+        <p>Circulation Reports for Item Type & Ccode Breakdown, New Acquisitions, and Newly Added Patrons in this month.</p>
+        <p>Directions to run these: Dropdowns: choose your library; month: choose this month; year: choose this year and click "Run the report."<br />If you want to download, print, and/or resort the report, scroll to the bottom to download the
+          report, save to your computer, and open in Excel or another spreadsheet software.</p>
+        <ul>
+          <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=1930&phase=Run%20this%20report" target="_blank">Circulation by Item Type</a></li>
+          <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=1929&phase=Run%20this%20report" target="_blank">Circulation by Collection Code</a></li>
+          <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=536&phase=Run%20this%20report" target="_blank">New Acquisitions</a></li>
+          <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=555&phase=Run%20this%20report" target="_blank">Review newly added patrons</a></li>
+        </ul>
+        <p>Reports for new patrons and new materials</p>
+        <p>To run these reports, click on the link and choose your library. The report will automatically set the date to gather the data for the previous calendar month.</p>
+        <ul>
+          <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=2903&phase=Run%20this%20report" target="_blank">New Patrons by Category</a></li>
+          <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=2902&phase=Run%20this%20report" target="_blank">New Materials by Item Type & Location</a></li>
+          <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=2901&phase=Run%20this%20report" target="_blank">New Materials by Collection Code & Location</a></li>
+        </ul>
+        <p>-----</p>
+      </div>
+      <div id="stat3">
+        <h5>NExpress 2018 overall statistics</h5>
+        <table class="tg">
+          <tr>
+            <th>2018</th>
+            <th id="eomitotalhd">Total items</th>
+            <th id="eombtotalhd">Total titles</th>
+            <th id="eomptotalhd">Total patrons</th>
+            <th id="eomctotalhd">Total Circulation<br />this month</th>
+            <th id="eoyctotalhd">Total Circ for 2018 through<br />the end of this month</th>
+          </tr>
+          <tr class="currow">
+            <td>December</td>
+            <td>1058712</td>
+            <td>432234</td>
+            <td>118175</td>
+            <td>99895</td>
+            <td>1529206</td>
+          </tr>
+          <tr>
+            <td>November</td>
+            <td>1044007</td>
+            <td>405543</td>
+            <td>122979</td>
+            <td>110036</td>
+            <td>1429311</td>
+          </tr>
+          <tr>
+            <td>October</td>
+            <td>1045655</td>
+            <td>421894</td>
+            <td>123233</td>
+            <td>127753</td>
+            <td>1319275</td>
+          </tr>
+          <tr>
+            <td>September</td>
+            <td>1046428</td>
+            <td>420330</td>
+            <td>122581</td>
+            <td>116766</td>
+            <td>1191522</td>
+          </tr>
+          <tr>
+            <td>August</td>
+            <td>1046816</td>
+            <td>419147</td>
+            <td>133697</td>
+            <td>137007</td>
+            <td>1074756</td>
+          </tr>
+          <tr>
+            <td>July</td>
+            <td>1042834</td>
+            <td>409275</td>
+            <td>133529</td>
+            <td>152516</td>
+            <td>937749</td>
+          </tr>
+          <tr>
+            <td>June</td>
+            <td>1043053</td>
+            <td>411942</td>
+            <td>132519</td>
+            <td>161867</td>
+            <td>785233</td>
+          </tr>
+          <tr>
+            <td>May</td>
+            <td>1045605</td>
+            <td>413840</td>
+            <td>131574</td>
+            <td>130623</td>
+            <td>623366</td>
+          </tr>
+          <tr>
+            <td>April</td>
+            <td>1041794</td>
+            <td>411325</td>
+            <td>130687</td>
+            <td>120444</td>
+            <td>492743</td>
+          </tr>
+          <tr>
+            <td>March</td>
+            <td>1038195</td>
+            <td>410354</td>
+            <td>130269</td>
+            <td>130786</td>
+            <td>372299</td>
+          </tr>
+          <tr>
+            <td>February</td>
+            <td>1038217</td>
+            <td>409477</td>
+            <td>129761</td>
+            <td>115343</td>
+            <td>241513</td>
+          </tr>
+          <tr>
+            <td>January</td>
+            <td>1044433</td>
+            <td>410068</td>
+            <td>129209</td>
+            <td>126170</td>
+            <td>126170</td>
+          </tr>
+        </table>
+        <p><span>Updated 2019.01.01</p>
+        <p>-----</p>
+      </div>
+    </div>
+  </div>
+
+  <!--  TABR05 -->
+  <div class="mptabContent" id="tab05">
+    <h2>Hoopla help</h2>
+    <div>
+      <h3>Hoopla help</h3>
+      <p>Hoopla account update</p>
+      <p><a href="https://news.nexpresslibrary.org/wp-content/uploads/hoopla.account.update.2017.03.10.pdf" target="_blank">Click here</a> here for instructions for typical problems with Hoopla accounts.</p>
+      <p><a href="https://theclub.hoopladigital.com" target="_blank">Click here</a> for the Hoopla bookclub page.</p>
+      <p><a href="https://resources.hoopladigital.com/" target="_blank">Click here</a> for the Hoopla resources page.</p>
+    </div>
+  </div>
+
+  <!--  TABR06 -->
+  <div class="mptabContent" id="tab06">
+  </div>
+
+  <!--  END -->
+</body>

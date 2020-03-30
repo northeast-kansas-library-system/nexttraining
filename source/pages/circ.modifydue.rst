@@ -11,26 +11,24 @@ Modify a due date
 
 It is possible to modify the due date on an item before you check the item out to a patron.
 
-1.
+1.  From the check-out page in a patron's account, click on the "Checkout settings" option under the input box
 
-.. image:: ../../images/modify.duedate.010.png
+.. image:: ../images/modify.duedate.010.jpg
 
-2.
+2.  Ignore the "Automtic renewal" checkbox
 
-.. image:: ../../images/modify.duedate.020.png
+.. image:: ../images/modify.duedate.020.jpg
 
-3.
+3.  Click on the calendar icon and select a new due date
 
-.. image:: ../../images/modify.duedate.030.png
+.. image:: ../images/modify.duedate.030.jpg
 
-4.
+.. image:: ../images/modify.duedate.040.jpg
 
-.. image:: ../../images/modify.duedate.040.png
+4.  !OPTIONAL! - Check the "Use this date till the browers is closed" checkbox to set every due date for every patron to the new due date
 
-5.
+.. image:: ../images/modify.duedate.050.jpg
 
-.. image:: ../../images/modify.duedate.050.png
+6.  The new due date will show highlighted in green after each check-out
 
-6. 
-
-.. image:: ../../images/modify.duedate.060.png
+.. image:: ../images/modify.duedate.060.jpg

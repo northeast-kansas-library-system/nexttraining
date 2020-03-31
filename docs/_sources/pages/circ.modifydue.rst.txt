@@ -7,7 +7,7 @@
 
 
 Modify a due date
-=================
+-----------------
 
 It is possible to modify the due date on an item before you check the item out to a patron.
 

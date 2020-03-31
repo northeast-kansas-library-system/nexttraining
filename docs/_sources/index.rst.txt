@@ -10,8 +10,8 @@
    .. ^ for subsubsections (“Heading 3”)
    .. " for paragraphs (“Heading 4”)
 
-Welcome to Next Search Catalog Training's documentation!
-########################################################
+Welcome to Next Search Catalog Training Training
+################################################
 
 Main index.
 
